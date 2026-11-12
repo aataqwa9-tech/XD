@@ -89,11 +89,11 @@
                 </div>
                 <div class="relative z-10 max-w-2xl space-y-6">
                     <span class="px-3 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wider">Asisten Pintar Matematika SMA</span>
-                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">Tanya Guru AI & Pecahkan Soal Bersama</h1>
-                    <p class="text-indigo-100 text-base md:text-lg">Diskusikan soal matematika apa saja dengan Guru AI yang ramah, jelaskan konsep dengan mudah, tampilkan gambar grafik otomatis, dan latihan 50 soal ujian.</p>
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">Tanya Guru AI & Kalkulator Solver Fungsional</h1>
+                    <p class="text-indigo-100 text-base md:text-lg">Platform matematika interaktif dengan solver perhitungan nyata, grafik kurva otomatis, kuis 50 soal, dan mode gelap/terang.</p>
                     <div class="flex flex-wrap gap-4 pt-2">
                         <button onclick="switchTab('tutor')" class="px-6 py-3 rounded-xl bg-white text-brand-700 font-semibold shadow-lg hover:bg-indigo-50 transition transform hover:-translate-y-0.5"><i class="fa-solid fa-robot mr-2"></i> Tanya Guru AI Sekarang</button>
-                        <button onclick="switchTab('solver')" class="px-6 py-3 rounded-xl bg-brand-700/60 border border-white/20 font-semibold text-white hover:bg-brand-700 transition">Solver & Grafik</button>
+                        <button onclick="switchTab('solver')" class="px-6 py-3 rounded-xl bg-brand-700/60 border border-white/20 font-semibold text-white hover:bg-brand-700 transition">Buka Solver & Grafik</button>
                     </div>
                 </div>
             </div>
@@ -105,21 +105,21 @@
                         <i class="fa-solid fa-chalkboard-user"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-2">Guru AI Matematika</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Tanya soal apa saja, dapatkan penjelasan sabar, mudah dipahami, lengkap dengan gambar grafik.</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Tanya jawab interaktif dengan penjelasan sabar dan visualisasi grafik otomatis.</p>
                 </div>
                 <div onclick="switchTab('solver')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
                     <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-4">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
-                    <h3 class="text-lg font-bold mb-2">Visualisasi Grafik Otomatis</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Lihat gambar kurva grafik fungsi kuadrat dan turunan secara instan di koordinat Cartesius.</p>
+                    <h3 class="text-lg font-bold mb-2">Solver & Grafik Nyata</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Masukkan angka persamaan kuadrat, turunan, matriks, atau statistika untuk hasil kalkulasi instan.</p>
                 </div>
                 <div onclick="switchTab('quiz')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
                     <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
                         <i class="fa-solid fa-award"></i>
                     </div>
                     <h3 class="text-lg font-bold mb-2">Bank 50 Soal + Pembahasan</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Uji kemampuan dengan 50 soal pilihan ganda lengkap beserta koreksi dan penjelasan jawaban benar.</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Uji kemampuan dengan 50 soal pilihan ganda lengkap beserta koreksi jawaban salah.</p>
                 </div>
             </div>
         </section>
@@ -139,7 +139,6 @@
 
                 <!-- Chat Messages Box -->
                 <div id="ai-chat-box" class="h-96 overflow-y-auto space-y-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm">
-                    <!-- Initial AI Greeting -->
                     <div class="flex items-start space-x-3">
                         <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs flex-shrink-0 font-bold">AI</div>
                         <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm max-w-lg">
@@ -148,14 +147,12 @@
                     </div>
                 </div>
 
-                <!-- Suggested Quick Questions -->
                 <div class="flex flex-wrap gap-2">
                     <button onclick="askAITeacher('Jelaskan cara mudah mencari akar persamaan kuadrat')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 transition">Persamaan Kuadrat?</button>
                     <button onclick="askAITeacher('Bagaimana aturan turunan fungsi aljabar?')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 transition">Aturan Turunan?</button>
                     <button onclick="askAITeacher('Bagaimana rumus suku ke-n barisan aritmatika?')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 transition">Barisan Aritmatika?</button>
                 </div>
 
-                <!-- Input Chat Bar -->
                 <div class="flex items-center space-x-2">
                     <input type="text" id="ai-user-input" onkeypress="if(event.key==='Enter') sendAIMessage()" placeholder="Ketik pertanyaan matematika di sini..." class="flex-grow px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <button onclick="sendAIMessage()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition flex items-center"><i class="fa-solid fa-paper-plane mr-2"></i> Kirim</button>
@@ -167,8 +164,8 @@
         <section id="tab-solver" class="hidden space-y-6">
             <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
                 <div class="max-w-2xl mb-6">
-                    <h2 class="text-2xl font-bold mb-2">Pencari & Pemecah Soal + Gambar Grafik</h2>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Pilih topik matematika untuk menampilkan langkah detail serta gambar grafik kurvanya.</p>
+                    <h2 class="text-2xl font-bold mb-2">Pencari & Kalkulator Solver Fungsional</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Masukkan nilai pada form di bawah untuk mendapatkan perhitungan nyata dan gambar grafik kurva otomatis.</p>
                 </div>
 
                 <div class="flex flex-wrap gap-2 mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
@@ -187,7 +184,7 @@
                             <div><label class="block text-xs font-semibold mb-1">b</label><input type="number" id="k-b" value="-4" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
                             <div><label class="block text-xs font-semibold mb-1">c</label><input type="number" id="k-c" value="3" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
                         </div>
-                        <button onclick="solveKuadrat()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung & Munculkan Gambar Grafik</button>
+                        <button onclick="solveKuadrat()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung & Tampilkan Grafik Nyata</button>
                     </div>
                     <div id="form-turunan" class="solver-form hidden space-y-4">
                         <p class="text-sm font-medium">Fungsi: $f(x) = ax^n$</p>
@@ -195,12 +192,12 @@
                             <div><label class="block text-xs font-semibold mb-1">a</label><input type="number" id="t-a" value="1" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
                             <div><label class="block text-xs font-semibold mb-1">n</label><input type="number" id="t-n" value="3" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
                         </div>
-                        <button onclick="solveTurunan()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung & Munculkan Grafik</button>
+                        <button onclick="solveTurunan()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Turunan & Grafik</button>
                     </div>
                     <div id="form-statistika" class="solver-form hidden space-y-4">
                         <p class="text-sm font-medium">Data angka dipisahkan koma:</p>
                         <input type="text" id="s-data" value="70, 80, 85, 90, 75, 80" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900">
-                        <button onclick="solveStatistika()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Statistika</button>
+                        <button onclick="solveStatistika()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Statistika Nyata</button>
                     </div>
                     <div id="form-aritmatika" class="solver-form hidden space-y-4">
                         <div class="grid grid-cols-3 gap-4">
@@ -208,7 +205,7 @@
                             <div><label class="block text-xs font-semibold mb-1">b (Beda)</label><input type="number" id="ar-b" value="4" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
                             <div><label class="block text-xs font-semibold mb-1">n (Suku ke-)</label><input type="number" id="ar-n" value="10" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
                         </div>
-                        <button onclick="solveAritmatika()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Barisan</button>
+                        <button onclick="solveAritmatika()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Barisan Nyata</button>
                     </div>
                     <div id="form-matriks" class="solver-form hidden space-y-4">
                         <p class="text-sm font-medium">Matriks Ordo 2x2:</p>
@@ -216,4 +213,5 @@
                             <div class="grid grid-cols-2 gap-2">
                                 <input type="number" id="m-a" value="1" class="p-2 border rounded-lg bg-white dark:bg-slate-900 text-center">
                                 <input type="number" id="m-b" value="2" class="p-2 border rounded-lg bg-white dark:bg-slate-900 text-center">
-                                <in
+                                <input type="number" id="m-c" value="3" class="p-2 border rounded-lg bg-white dark:bg-slate-900 text-center">
+                                <input type="number"

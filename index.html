@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathSphere SMA - Solusi, Grafik, & Guru AI Matematika</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-brand-600 to-indigo-500 bg-clip-text text-transparent">MathSphere SMA</span>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden xl:flex items-center space-x-1">
+                <button onclick="switchTab('home')" id="nav-home" class="px-3 py-2 rounded-lg text-sm font-medium transition text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-slate-800">Beranda</button>
+                <button onclick="switchTab('tutor')" id="nav-tutor" class="px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-semibold"><i class="fa-solid fa-robot mr-1"></i> Tanya Guru AI</button>
+                <button onclick="switchTab('solver')" id="nav-solver" class="px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-800">Solver & Grafik</button>
+                <button onclick="switchTab('formulas')" id="nav-formulas" class="px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-800">Rumus SMA</button>
+                <button onclick="switchTab('tablegraph')" id="nav-tablegraph" class="px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-800">Soal Tabel & Grafik</button>
+                <button onclick="switchTab('quiz')" id="nav-quiz" class="px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-800">Bank 50 Soal</button>
+                <button onclick="switchTab('calc')" id="nav-calc" class="px-3 py-2 rounded-lg text-sm font-medium transition hover:bg-slate-100 dark:hover:bg-slate-800">Kalkulator</button>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-3">
+                <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+                    <i id="theme-icon" class="fa-solid fa-moon text-slate-600 dark:text-yellow-400"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="xl:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden px-4 pt-2 pb-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-1">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium">Beranda</button>
+            <button onclick="switchTab('tutor'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-indigo-600 font-semibold"><i class="fa-solid fa-robot mr-1"></i> Tanya Guru AI</button>
+            <button onclick="switchTab('solver'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium">Solver & Grafik</button>
+            <button onclick="switchTab('formulas'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium">Rumus SMA</button>
+            <button onclick="switchTab('tablegraph'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium">Soal Tabel & Grafik</button>
+            <button onclick="switchTab('quiz'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium">Bank 50 Soal</button>
+            <button onclick="switchTab('calc'); toggleMobileMenu();" class="block w-full text-left px-3 py-2 rounded-lg text-sm font-medium">Kalkulator</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- TAB: HOME -->
+        <section id="tab-home" class="space-y-12">
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-brand-600 to-indigo-700 text-white p-8 md:p-12 shadow-xl">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="relative z-10 max-w-2xl space-y-6">
+                    <span class="px-3 py-1 rounded-full bg-white/20 text-xs font-semibold uppercase tracking-wider">Asisten Pintar Matematika SMA</span>
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight">Tanya Guru AI & Pecahkan Soal Bersama</h1>
+                    <p class="text-indigo-100 text-base md:text-lg">Diskusikan soal matematika apa saja dengan Guru AI yang ramah, jelaskan konsep dengan mudah, tampilkan gambar grafik otomatis, dan latihan 50 soal ujian.</p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <button onclick="switchTab('tutor')" class="px-6 py-3 rounded-xl bg-white text-brand-700 font-semibold shadow-lg hover:bg-indigo-50 transition transform hover:-translate-y-0.5"><i class="fa-solid fa-robot mr-2"></i> Tanya Guru AI Sekarang</button>
+                        <button onclick="switchTab('solver')" class="px-6 py-3 rounded-xl bg-brand-700/60 border border-white/20 font-semibold text-white hover:bg-brand-700 transition">Solver & Grafik</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div onclick="switchTab('tutor')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Guru AI Matematika</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Tanya soal apa saja, dapatkan penjelasan sabar, mudah dipahami, lengkap dengan gambar grafik.</p>
+                </div>
+                <div onclick="switchTab('solver')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-900/40 text-brand-600 dark:text-brand-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Visualisasi Grafik Otomatis</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Lihat gambar kurva grafik fungsi kuadrat dan turunan secara instan di koordinat Cartesius.</p>
+                </div>
+                <div onclick="switchTab('quiz')" class="group cursor-pointer p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Bank 50 Soal + Pembahasan</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Uji kemampuan dengan 50 soal pilihan ganda lengkap beserta koreksi dan penjelasan jawaban benar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: TANYA GURU AI -->
+        <section id="tab-tutor" class="hidden space-y-6 max-w-3xl mx-auto">
+            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                <div class="flex items-center space-x-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold">Ibu Rina - Guru AI Matematika SMA</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Tanyakan konsep, rumus, atau soal cerita. Saya siap membimbing dengan sabar!</p>
+                    </div>
+                </div>
+
+                <!-- Chat Messages Box -->
+                <div id="ai-chat-box" class="h-96 overflow-y-auto space-y-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm">
+                    <!-- Initial AI Greeting -->
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs flex-shrink-0 font-bold">AI</div>
+                        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm max-w-lg">
+                            <p>Halo! Saya Ibu Rina, guru matematikamu di sini. Ada materi atau soal SMA yang ingin kita bahas bersama hari ini? (Misal: <em>Bagaimana cara mencari turunan?</em> atau <em>Jelaskan persamaan kuadrat dong Bu</em>)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggested Quick Questions -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="askAITeacher('Jelaskan cara mudah mencari akar persamaan kuadrat')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 transition">Persamaan Kuadrat?</button>
+                    <button onclick="askAITeacher('Bagaimana aturan turunan fungsi aljabar?')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 transition">Aturan Turunan?</button>
+                    <button onclick="askAITeacher('Bagaimana rumus suku ke-n barisan aritmatika?')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 transition">Barisan Aritmatika?</button>
+                </div>
+
+                <!-- Input Chat Bar -->
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="ai-user-input" onkeypress="if(event.key==='Enter') sendAIMessage()" placeholder="Ketik pertanyaan matematika di sini..." class="flex-grow px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button onclick="sendAIMessage()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md transition flex items-center"><i class="fa-solid fa-paper-plane mr-2"></i> Kirim</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: SOLVER & GRAFIK -->
+        <section id="tab-solver" class="hidden space-y-6">
+            <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="max-w-2xl mb-6">
+                    <h2 class="text-2xl font-bold mb-2">Pencari & Pemecah Soal + Gambar Grafik</h2>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Pilih topik matematika untuk menampilkan langkah detail serta gambar grafik kurvanya.</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mb-6 border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <button onclick="setSolverTopic('kuadrat')" id="st-kuadrat" class="px-4 py-2 rounded-xl text-sm font-semibold transition bg-brand-600 text-white shadow-sm">Persamaan Kuadrat</button>
+                    <button onclick="setSolverTopic('turunan')" id="st-turunan" class="px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Turunan</button>
+                    <button onclick="setSolverTopic('statistika')" id="st-statistika" class="px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Statistika</button>
+                    <button onclick="setSolverTopic('aritmatika')" id="st-aritmatika" class="px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Aritmatika</button>
+                    <button onclick="setSolverTopic('matriks')" id="st-matriks" class="px-4 py-2 rounded-xl text-sm font-semibold transition bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Matriks 2x2</button>
+                </div>
+
+                <div id="solver-form-area" class="space-y-4 bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+                    <div id="form-kuadrat" class="solver-form space-y-4">
+                        <p class="text-sm font-medium">Bentuk: $ax^2 + bx + c = 0$</p>
+                        <div class="grid grid-cols-3 gap-4">
+                            <div><label class="block text-xs font-semibold mb-1">a</label><input type="number" id="k-a" value="1" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                            <div><label class="block text-xs font-semibold mb-1">b</label><input type="number" id="k-b" value="-4" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                            <div><label class="block text-xs font-semibold mb-1">c</label><input type="number" id="k-c" value="3" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                        </div>
+                        <button onclick="solveKuadrat()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung & Munculkan Gambar Grafik</button>
+                    </div>
+                    <div id="form-turunan" class="solver-form hidden space-y-4">
+                        <p class="text-sm font-medium">Fungsi: $f(x) = ax^n$</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><label class="block text-xs font-semibold mb-1">a</label><input type="number" id="t-a" value="1" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                            <div><label class="block text-xs font-semibold mb-1">n</label><input type="number" id="t-n" value="3" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                        </div>
+                        <button onclick="solveTurunan()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung & Munculkan Grafik</button>
+                    </div>
+                    <div id="form-statistika" class="solver-form hidden space-y-4">
+                        <p class="text-sm font-medium">Data angka dipisahkan koma:</p>
+                        <input type="text" id="s-data" value="70, 80, 85, 90, 75, 80" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900">
+                        <button onclick="solveStatistika()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Statistika</button>
+                    </div>
+                    <div id="form-aritmatika" class="solver-form hidden space-y-4">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div><label class="block text-xs font-semibold mb-1">a (Suku 1)</label><input type="number" id="ar-a" value="3" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                            <div><label class="block text-xs font-semibold mb-1">b (Beda)</label><input type="number" id="ar-b" value="4" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                            <div><label class="block text-xs font-semibold mb-1">n (Suku ke-)</label><input type="number" id="ar-n" value="10" class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900"></div>
+                        </div>
+                        <button onclick="solveAritmatika()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition">Hitung Barisan</button>
+                    </div>
+                    <div id="form-matriks" class="solver-form hidden space-y-4">
+                        <p class="text-sm font-medium">Matriks Ordo 2x2:</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="number" id="m-a" value="1" class="p-2 border rounded-lg bg-white dark:bg-slate-900 text-center">
+                                <input type="number" id="m-b" value="2" class="p-2 border rounded-lg bg-white dark:bg-slate-900 text-center">
+                                <in

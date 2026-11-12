@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tanya.matematika - Untuk SMA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1e3a5f;
+      --primary-light: #2c5282;
+      --accent: #e07a5f;
+      --accent-hover: #c96a52;
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1a202c;
+      --text-muted: #718096;
+      --border: #e2e8f0;
+      --radius: 12px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* Header */
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #2b6cb0, #1a365d);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text strong {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .logo-text span {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Main Layout */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 32px;
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        order: -1;
+      }
+    }
+
+    /* Hero */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ebf4ff;
+      color: #2b6cb0;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    /* Input Card */
+    .input-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .input-area {
+      padding: 20px;
+      min-height: 100px;
+    }
+
+    #questionInput {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      resize: none;
+      min-height: 80px;
+      color: var(--text);
+    }
+
+    #questionInput::placeholder {
+      color: #a0aec0;
+    }
+
+    .input-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: #fafbfc;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cat-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: white;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .cat-btn:hover {
+      border-color: #cbd5e0;
+      background: #f7fafc;
+    }
+
+    .cat-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .search-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .search-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Contoh pertanyaan */
+    .examples {
+      margin-top: 8px;
+    }
+
+    .examples-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .example-item {
+      display: block;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+
+    .example-item:hover {
+      border-color: #a0aec0;
+      background: #f7fafc;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 20px;
+    }
+
+    .sidebar-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-card .sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 30px 10px;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      margin-bottom: 10px;
+      opacity: 0.4;
+    }
+
+    .history-list {
+      list-style: none;
+    }
+
+    .history-item {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-item:hover {
+      color: var(--primary-light);
+    }
+
+    .history-item .time {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Result Area */
+    .result-card {
+      display: none;
+      background: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-top: 24px;
+      overflow: hidden;
+    }
+
+    .result-header {
+      padding: 16px 20px;
+      background: #f0fff4;
+      border-bottom: 1px solid #c6f6d5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .result-header svg {
+      color: #38a169;
+    }
+
+    .result-body {
+      padding: 24px;
+    }
+
+    .result-body h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .result-body p, .result-body li {
+      font-size: 15px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .result-body ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .math {
+      background: #f7fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Loading */
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      color: var(--text-muted);
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e2e8f0;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">
+      <div class="logo-icon">∑</div>
+      <div class="logo-text">
+        <strong>tanya.matematika</strong>
+        <span>UNTUK SMA</span>
+      </div>
+    </a>
+    <div class="header-right">
+      <span id="savedCount">0 pertanyaan tersimpan</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        Teman belajar matematika
+      </div>
+
+      <h1>Tidak ada soal yang terlalu sulit<br>untuk dipahami.</h1>
+      <p class="subtitle">
+        Tulis soal matematika SMA-mu. Dapatkan jawaban yang jelas, terstruktur, dan dijelaskan langkah demi langkah.
+      </p>
+
+      <div class="input-card">
+        <div class="input-area">
+          <textarea 
+            id="questionInput" 
+            placeholder="Contoh: Jika f(x) = x² + 3x, tentukan f'(x)..."
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="input-footer">
+          <div class="categories">
+            <button class="cat-btn active" data-cat="umum">Umum</button>
+            <button class="cat-btn" data-cat="aljabar">Aljabar</button>
+            <button class="cat-btn" data-cat="kalkulus">Kalkulus</button>
+            <button class="cat-btn" data-cat="geometri">Geometri</button>
+            <button class="cat-btn" data-cat="statistika">Statistika</button>
+            <button class="cat-btn" data-cat="trigonometri">Trigonometri</button>
+          </div>
+          <button class="search-btn" id="searchBtn" onclick="cariJawaban()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Cari jawaban
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Sedang mencari jawaban...</p>
+      </div>
+
+      <!-- Result -->
+      <div class="result-card" id="resultCard">
+        <div class="result-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <strong>Jawaban ditemukan</strong>
+        </div>
+        <div class="result-body" id="resultBody">
+          <!-- Diisi oleh JS -->
+        </div>
+      </div>
+
+      <!-- Contoh -->
+      <div class="examples" id="examplesSection">
+        <div class="examples-label">COBA TANYAKAN</div>
+        <div class="example-item" onclick="isiContoh(this)">
+          Tentukan akar-akar persamaan x² − 5x + 6 = 0
+        </div>
+        <div class="example-item" onclick="isiContoh(this)">
+          Bagaimana cara menghitung turunan dari f(x) = 3x² + 2x?
+        </div>
+        <div class="example-item" onclick="isiContoh(this)">
+          Hitung luas segitiga dengan sisi 6 cm, 8 cm, dan 10 cm
+        </div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h3>Riwayat belajar</h3>
+        <p class="sub">Pertanyaan terakhirmu</p>
+        
+        <div class="empty-state" id="emptyHistory">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <p>Belum ada pertanyaan</p>
+        </div>
+
+        <ul class="history-list" id="historyList" style="display:none;"></ul>
+      </div>
+
+      <p style="font-size:12px; color:#a0aec0; margin-top:16px; text-align:center; line-height:1.5;">
+        Jawaban dibuat untuk membantu memahami konsep. Tetap periksa kembali langkahmu, ya.
+      </p>
+    </aside>
+  </div>
+
+  <script>
+    // Kategori aktif
+    let kategoriAktif = 'umum';
+    const history = JSON.parse(localStorage.getItem('mathHistory') || '[]');
+
+    // Update UI history
+    function updateHistoryUI() {
+      const list = document.getElementById('historyList');
+      const empty = document.getElementById('emptyHistory');
+      const count = document.getElementById('savedCount');
+
+      count.textContent = history.length + ' pertanyaan tersimpan';
+
+      if (history.length === 0) {
+        list.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+      }
+
+      empty.style.display = 'none';
+      list.style.display = 'block';
+      list.innerHTML = history.slice(0, 8).map((item, i) => `
+        <li class="history-item" onclick="isiDariHistory(${i})">
+          ${item.question.substring(0, 60)}${item.question.length > 60 ? '...' : ''}
+          <div class="time">${item.time}</div>
+        </li>
+      `).join('');
+    }
+
+    // Kategori click
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        kategoriAktif = btn.dataset.cat;
+      });
+    });
+
+    // Isi contoh
+    function isiContoh(el) {
+      document.getElementById('questionInput').value = el.textContent.trim();
+      document.getElementById('questionInput').focus();
+    }
+
+    function isiDariHistory(index) {
+      document.getElementById('questionInput').value = history[index].question;
+      document.getElementById('questionInput').focus();
+    }
+
+    // Database jawaban sederhana (demo)
+    const database = {
+      "x² − 5x + 6 = 0": {
+        title: "Akar-akar persamaan kuadrat",
+        steps: [
+          "Persamaan: x² − 5x + 6 = 0",
+          "Faktorkan: cari dua bilangan yang hasil kalinya 6 dan jumlahnya −5 → (−2) dan (−3)",
+          "Jadi: (x − 2)(x − 3) = 0",
+          "Akar-akar: x = 2 atau x = 3"
+        ],
+        answer: "x = 2 dan x = 3"
+      },
+      "turunan dari f(x) = 3x² + 2x": {
+        title: "Turunan fungsi polinomial",
+        steps: [
+          "Diketahui f(x) = 3x² + 2x",
+          "Gunakan aturan turunan: d/dx [axⁿ] = a·n·xⁿ⁻¹",
+          "Turunan 3x² = 3 · 2 · x¹ = 6x",
+          "Turunan 2x = 2",
+          "Jadi f'(x) = 6x + 2"
+        ],
+        answer: "f'(x) = 6x + 2"
+      },
+      "luas segitiga dengan sisi 6 cm, 8 cm, dan 10 cm": {
+        title: "Luas segitiga (rumus Heron)",
+        steps: [
+          "Sisi: a = 6, b = 8, c = 10",
+          "Hitung semiperimeter: s = (6+8+10)/2 = 12",
+          "Rumus Heron: √[s(s−a)(s−b)(s−c)]",
+          "s−a = 6, s−b = 4, s−c = 2",
+          "Luas = √[12 × 6 × 4 × 2] = √576 = 24"
+        ],
+        answer: "Luas = 24 cm²"
+      },
+      "f(x) = x² + 3x": {
+        title: "Turunan fungsi",
+        steps: [
+          "f(x) = x² + 3x",
+          "f'(x) = 2x + 3"
+        ],
+        answer: "f'(x) = 2x + 3"
+      }
+    };
+
+    function cariJawaban() {
+      const input = document.getElementById('questionInput').value.trim();
+      if (!input) {
+        alert('Tulis soal matematika terlebih dahulu!');
+        return;
+      }
+
+      // Tampilkan loading
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('resultCard').style.display = 'none';
+      document.getElementById('examplesSection').style.display = 'none';
+      document.getElementById('searchBtn').disabled = true;
+
+      // Simulasikan delay
+      setTimeout(() => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('searchBtn').disabled = false;
+
+        // Cari di database
+        let found = null;
+        const lowerInput = input.toLowerCase();
+
+        for (const key in database) {
+          if (lowerInput.includes(key.toLowerCase()) || key.toLowerCase().includes(lowerInput.substring(0, 20))) {
+            found = database[key];
+            break;
+          }
+        }
+
+        const resultBody = document.getElementById('resultBody');
+        
+        if (found) {
+          resultBody.innerHTML = `
+            <h3>${found.title}</h3>
+            <p><strong>Soal:</strong> ${input}</p>
+            <ol>
+              ${found.steps.map(s => `<li>${s}</li>`).join('')}
+            </ol>
+            <div class="math"><strong>Jawaban akhir:</strong> ${found.answer}</div>
+            <p class="note">Jawaban dibuat untuk membantu memahami konsep. Tetap periksa kembali langkahmu, ya.</p>
+          `;
+        } else {
+          // Jawaban generik
+          resultBody.innerHTML = `
+            <h3>Pembahasan Soal</h3>
+            <p><strong>Soal yang kamu tanyakan:</strong></p>
+            <div class="math">${input}</div>
+            <p>Berikut langkah umum untuk menyelesaikan soal jenis ini:</p>
+            <ol>
+              <li>Identifikasi jenis soal (aljabar, kalkulus, geometri, dll).</li>
+              <li>Tulis apa yang diketahui dan apa yang ditanyakan.</li>
+              <li>Pilih rumus atau metode yang sesuai.</li>
+              <li>Kerjakan langkah demi langkah dengan teliti.</li>
+              <li>Periksa kembali hasil akhir.</li>
+            </ol>
+            <p>Karena ini adalah versi demo, jawaban detail otomatis hanya tersedia untuk beberapa contoh soal. 
+            Di versi lengkap, AI akan menjelaskan langkah demi langkah secara lengkap.</p>
+            <p class="note">Tips: Coba gunakan salah satu contoh soal di bawah untuk melihat jawaban lengkap.</p>
+          `;
+        }
+
+        document.getElementById('resultCard').style.display = 'block';
+
+        // Simpan ke history
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + ' · ' + 
+                        now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
+        
+        history.unshift({ question: input, time: timeStr, kategori: kategoriAktif });
+        if (history.length > 20) history.pop();
+        localStorage.setItem('mathHistory', JSON.stringify(history));
+        updateHistoryUI();
+
+      }, 1200);
+    }
+
+    // Enter untuk submit
+    document.getElementById('questionInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        cariJawaban();
+      }
+    });
+
+    // Init
+    updateHistoryUI();
+  </script>
+</body>
+</html>
